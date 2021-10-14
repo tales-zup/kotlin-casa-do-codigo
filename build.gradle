@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-noarg:1.5.21"
+    }
+}
+
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.5.21"
     id("org.jetbrains.kotlin.kapt") version "1.5.21"
@@ -5,6 +11,8 @@ plugins {
     id("io.micronaut.application") version "2.0.6"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.5.21"
 }
+
+apply plugin: "kotlin-jpa"
 
 version = "0.1"
 group = "br.com.zup"
@@ -32,9 +40,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    // JPA
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("com.h2database:h2")
 }
 
 
